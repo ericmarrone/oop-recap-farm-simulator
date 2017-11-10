@@ -88,7 +88,7 @@ class Farm
   def harvest
     all_fields = Field.all
     all_fields.each do |field|
-        harvest = 0
+        this_harvest = 0
         this_harvest = field.harvest
         puts "Harvesting #{this_harvest} from #{field.hectares} hectare #{field.type} field."
         self.total_food += this_harvest
@@ -111,14 +111,12 @@ class Farm
         end
     end
     self.total_hectares = sum
-    puts "#{self.total_hectares} of total farm hectares. #{corn_sum}
-    hectares of tall green stalks rustling in the breeze fill your horizon.
-    The sun hangs low, casting an orange glow on a sea of #{wheat_sum} hectares of wheat."
+    puts "#{self.total_hectares} of total farm hectares. #{corn_sum} hectares of tall green stalks rustling in the breeze fill your horizon.The sun hangs low, casting an orange glow on a sea of #{wheat_sum} hectares of wheat."
   end
 
 
 end
 
 
-  my_farm = Farm.new("My Farm")
-  my_farm.main_menu
+my_farm = Farm.new("My Farm")
+my_farm.main_menu

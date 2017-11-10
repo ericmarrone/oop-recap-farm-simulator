@@ -5,14 +5,23 @@ class Field
     @hectares = size
     @type = nil
     @food = 0
-    @yield = 0
+    @harvest_yield = 0
   end
+
   def hectares
     @hectares
   end
 
   def hectares=(size)
     @hectares = size
+  end
+
+  def harvest_yield
+    @harvest_yield
+  end
+
+  def harvest_yield=(harvest_yield)
+    @harvest_yield = harvest_yield
   end
 
   def name
@@ -43,16 +52,21 @@ class Field
     @@fields
   end
   #
-  # def harvest
-  #   harvest = 100 * hectares
-  #   @food += harvest
-  #   return harvest
-  # end
+  def harvest
+    do_harvest = self.harvest_yield * self.hectares
+    @food += do_harvest
+    return do_harvest
+  end
 
 
 end
 
 class Corn < Field
+  def initialize(name,size)
+    super(name,size)
+    @harvest_yield = 20
+  end
+
   def self.create(name, size)
     new_field = Corn.new(name, size)
     new_field.type = "corn"
@@ -60,27 +74,32 @@ class Corn < Field
     return new_field
   end
 
-  def harvest
-    harvest = 20 * hectares
-    @food += harvest
-    return harvest
-  end
+  # def harvest
+  #   harvest = 20 * hectares
+  #   @food += harvest
+  #   return harvest
+  # end
 
 end
 
 class Wheat < Field
+  def initialize(name,size)
+    super(name,size)
+    @harvest_yield = 30
+  end
+
   def self.create(name, size)
-    new_field = Corn.new(name, size)
+    new_field = Wheat.new(name, size)
     new_field.type = "wheat"
     @@fields << new_field
     return new_field
   end
 
-  def harvest
-    harvest = 30 * hectares
-    @food += harvest
-    return harvest
-  end
+  # def harvest
+  #   harvest = 30 * hectares
+  #   @food += harvest
+  #   return harvest
+  # end
 
 
 end
@@ -90,4 +109,3 @@ end
 # p c.harvest
 
 # my_field = Corn.create("Corn field", 100)
-# puts Field.all.inspect
