@@ -6,6 +6,8 @@ class Farm
   def initialize(name)
     @name = name
     @total_food = 0
+    @total_hectares = 0
+
 
   end
 
@@ -15,6 +17,18 @@ class Farm
 
   def total_food
     @total_food
+  end
+
+  def total_food=(food)
+    @total_food = food
+  end
+
+  def total_hectares
+    @total_hectares
+  end
+
+  def total_hectares=(total_hectares)
+    @total_hectares = total_hectares
   end
 
   def main_menu
@@ -61,8 +75,6 @@ class Farm
       puts "Added a corn field of #{field_size} hectares!"
     end
 
-
-
   end
 
   def status
@@ -70,17 +82,41 @@ class Farm
     all_fields.each do |field|
       puts "#{field.name.capitalize} is a #{field.type.capitalize} field and is #{field.hectares} hectares."
     end
-    puts "The farm has #{total_food} harvested food so far"
+    puts "The farm has #{total_food} harvested food so far."
   end
 
   def harvest
-
+    all_fields = Field.all
+    all_fields.each do |field|
+        harvest = 0
+        this_harvest = field.harvest
+        puts "Harvesting #{this_harvest} from #{field.hectares} hectare #{field.type} field."
+        self.total_food += this_harvest
+    end
+    puts "The farm has #{total_food} harvested food so far."
   end
 
   def relax
-    puts "50 hectares of tall green stalks rustling in the breeze fill your horizon.
-    The sun hangs low, casting an orange glow on a sea of 100 hectares of wheat."
+    sum = 0
+    corn_sum = 0
+    wheat_sum = 0
+    all_fields = Field.all
+    all_fields.each do |field|
+        sum += field.hectares
+        if field.type == "corn"
+          corn_sum += field.hectares
+        end
+        if field.type == "wheat"
+          wheat_sum += field.hectares
+        end
+    end
+    self.total_hectares = sum
+    puts "#{self.total_hectares} of total farm hectares. #{corn_sum}
+    hectares of tall green stalks rustling in the breeze fill your horizon.
+    The sun hangs low, casting an orange glow on a sea of #{wheat_sum} hectares of wheat."
   end
+
+
 end
 
 

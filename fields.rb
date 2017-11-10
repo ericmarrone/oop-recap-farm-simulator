@@ -5,7 +5,7 @@ class Field
     @hectares = size
     @type = nil
     @food = 0
-
+    @yield = 0
   end
   def hectares
     @hectares
@@ -42,6 +42,12 @@ class Field
   def self.all
     @@fields
   end
+  #
+  # def harvest
+  #   harvest = 100 * hectares
+  #   @food += harvest
+  #   return harvest
+  # end
 
 
 end
@@ -55,8 +61,9 @@ class Corn < Field
   end
 
   def harvest
-    @food += 20 * hectares
-    return food
+    harvest = 20 * hectares
+    @food += harvest
+    return harvest
   end
 
 end
@@ -70,7 +77,9 @@ class Wheat < Field
   end
 
   def harvest
-    @food += 30 * hectares
+    harvest = 30 * hectares
+    @food += harvest
+    return harvest
   end
 
 
