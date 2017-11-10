@@ -67,10 +67,10 @@ class Farm
 
   def status
     all_fields = Field.all
+    all_fields.each do |field|
+      puts "#{field.name.capitalize} is a #{field.type.capitalize} field and is #{field.hectares} hectares."
+    end
     puts "The farm has #{total_food} harvested food so far"
-    puts '[1] field: Adds a new field'
-    puts '[2] harvest: harvests crops and adds to total harvested'
-
   end
 
   def harvest

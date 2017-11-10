@@ -10,12 +10,22 @@ class Field
   def hectares
     @hectares
   end
+
   def hectares=(size)
     @hectares = size
+  end
+
+  def name
+    @name
+  end
+
+  def name=(name)
+    @name = name
   end
   def food
     @food
   end
+
   def type
     @type
   end
@@ -31,7 +41,6 @@ class Field
 
   def self.all
     @@fields
-
   end
 
 
@@ -71,5 +80,5 @@ end
 #
 # p c.harvest
 
-my_field = Corn.create("Corn field", 100)
-puts Field.all.inspect
+# my_field = Corn.create("Corn field", 100)
+# puts Field.all.inspect
